@@ -136,11 +136,11 @@ coreo_uni_util_notify "advise-cloudtrail-json" do
   action :nothing
   type 'email'
   allow_empty ${AUDIT_AWS_CLOUDTRAIL_ALLOW_EMPTY}
-  send_on '${AUDIT_AWS_CLOUDTRAIL_SEND_ON}'
+  send_on '${AUDIT_AWS_CLOUDTRAIL_SEND_ON-1}'
   payload 'COMPOSITE::coreo_uni_util_jsrunner.cloudtrail-aggregate.return'
   payload_type "json"
   endpoint ({
-      :to => '${AUDIT_AWS_CLOUDTRAIL_ALERT_RECIPIENT}', :subject => 'CloudCoreo cloudtrail advisor alerts on PLAN::stack_name :: PLAN::name'
+      :to => '${AUDIT_AWS_CLOUDTRAIL_ALERT_RECIPIENT-1}', :subject => 'CloudCoreo cloudtrail advisor alerts on PLAN::stack_name :: PLAN::name'
   })
 end
 
@@ -155,7 +155,7 @@ coreo_uni_util_jsrunner "tags-to-notifiers-array" do
         }       ])
   json_input 'COMPOSITE::coreo_uni_util_jsrunner.cloudtrail-aggregate.return'
   function <<-EOH
-  
+
 const JSON = json_input;
 const NO_OWNER_EMAIL = "${AUDIT_AWS_CLOUDTRAIL_ALERT_RECIPIENT}";
 const OWNER_TAG = "${AUDIT_AWS_CLOUDTRAIL_OWNER_TAG}";
@@ -261,4 +261,3 @@ COMPOSITE::coreo_uni_util_jsrunner.tags-rollup.return
       :to => '${AUDIT_AWS_CLOUDTRAIL_ALERT_RECIPIENT}', :subject => 'CloudCoreo cloudtrail advisor alerts on PLAN::stack_name :: PLAN::name'
   })
 end
-
