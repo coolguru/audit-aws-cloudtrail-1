@@ -11,7 +11,7 @@ variables:
         required: true
         type: boolean
         default: false
-    AUDIT_AWS_CLOUDTRAIL_SEND_ON:
+AUDIT_AWS_CLOUDTRAIL_SEND_ON:
         description: "Send reports always or only when there is a change? Options - always / change. Default is change."
         required: true
         type: string
