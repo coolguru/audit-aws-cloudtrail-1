@@ -11,11 +11,6 @@ variables:
         required: true
         type: boolean
         default: false
-AUDIT_AWS_CLOUDTRAIL_SEND_ON:
-        description: "Send reports always or only when there is a change? Options - always / change. Default is change."
-        required: true
-        type: string
-        default: "change"
     AUDIT_AWS_CLOUDTRAIL_ALERT_RECIPIENT:
         description: "Enter the email address(es) that will receive notifications. If more than one, separate each with a comma."
         required: true
